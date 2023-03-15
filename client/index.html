@@ -15,7 +15,7 @@
     </div>
     <div>
         <h1>Login (avec Token)</h1>
-        <input type="text" id="usernameToken" placeholder="Tag ou Email">
+        <input type="text" id="usernameToken" placeholder="Tag">
         <input type="text" id="token" placeholder="Token">
         <button id="btn" onclick="loginToken()">Click Me Token</button>
     </div>
@@ -26,6 +26,28 @@
         <input type="text" id="emailRegister" placeholder="Email">
         <input type="password" id="passwordRegister" placeholder="Password">
         <button id="btn" onclick="register()">S'inscrire</button>
+    </div>
+    <div>
+        <h1>Obtenir liste bets</h1>
+        <button id="btn" onclick="getBetlist()">Obtenir liste bets</button>
+    </div>
+    <div>
+        <h1>Possession upgrade</h1>
+        <input type="number" id="idUpgrade" placeholder="0">
+        <button id="btn" onclick="getUpgrade()">Tester possession</button>
+    </div>
+    <div>
+        <h1>Definir upgrade</h1>
+        <input type="number" id="setUpgrade" placeholder="0">
+        <button id="btnAdd" onclick="addUpgrade()">Ajouter upgrade</button>
+        <button id="btnRemove" onclick="deleteUpgrade()">Retirer upgrade</button>
+
+    </div>    
+    <div>
+        <h1>Créer Bet</h1>
+        <input type="text" id="contentBet" placeholder="Contenu du bet">
+        <button id="btnBet" onclick="createBet()">Envoyer</button>
+
     </div>
     <script src="js/functions.js"></script>
 </body>

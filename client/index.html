@@ -7,6 +7,9 @@
     <title>BetteR</title>
 </head>
 <body>
+    <ul>
+        <li>sorathia / 12341234</li>
+        <li>fatfat / </li>
     <div>
         <h1>Login</h1>
         <input type="text" id="username" placeholder="Tag ou Email">
@@ -32,6 +35,16 @@
         <button id="btn" onclick="getBetlist()">Obtenir liste bets</button>
     </div>
     <div>
+        <h1>Obtenir liste Follows</h1>
+        <button onclick="getFollowlist('false')">Obtenir liste Follow ID</button>
+        <button onclick="getFollowlist('true')">Obtenir liste Follow Tag</button>
+    </div>    
+    <div>
+        <h1>Obtenir liste des Followers</h1>
+        <button onclick="getFolloweelist('false')">Obtenir liste Followers ID</button>
+        <button onclick="getFolloweelist('true')">Obtenir liste Followers Tag</button>
+    </div>
+    <div>
         <h1>Possession upgrade</h1>
         <input type="number" id="idUpgrade" placeholder="0">
         <button id="btn" onclick="getUpgrade()">Tester possession</button>
@@ -48,6 +61,21 @@
         <input type="text" id="contentBet" placeholder="Contenu du bet">
         <button id="btnBet" onclick="createBet()">Envoyer</button>
 
+    </div>
+    <div>
+        <h1>Follow someone</h1>
+        <input type="text" id="followInput" placeholder="Tag de la personne à follow">
+        <button id="btnFollow" onclick="follow()">Follow</button>
+    </div>
+    <div>
+        <h1>Unfollow someone</h1>
+        <input type="text" id="unfollowInput" placeholder="Tag de la personne à unfollow">
+        <button id="btnUnfollow" onclick="unfollow()">Unfollow</button>
+    </div>
+    <div>
+        <h1>Get Bet data</h1>
+        <input type="text" id="betInput" placeholder="ID Bet">
+        <button id="btnBet" onclick="getBet()">Obtenir</button>
     </div>
     <script src="js/functions.js"></script>
 </body>

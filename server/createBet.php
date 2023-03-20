@@ -14,22 +14,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $tag = strip_tags($data->tag);
         $id = strip_tags($data->id);
         $content = strip_tags($data->content);
-        $sql = "INSERT INTO `bet` (`user_id`, `content`, `is_A_Rebet`, `like_picture_url`, `rebet_picture_url`) VALUES ('".$id."', '".$content."', 0, 'default.jpeg', 'default.jpeg');";
-        
+        $sql = "INSERT INTO `bet` (`user_id`, `content`, `rebet_ref`) VALUES ('".$id."', '".$content."', NULL);";
+        // http_response_code(406);
+        // echo json_encode($sql);
+        // exit();
         $result = $conn->query($sql);
-        http_response_code(200);
-        echo json_encode(["message" => "Le bet a bien été créé"]);
+        http_response_code(204);
         exit();
 
     }else{
         // Données incomplètes
         http_response_code(400);
-        echo json_encode(["error" => "Données incomplètes".$tag." ayant l'id ".$id." peut acheter l'upgrade ".$upgrade.""]);
+        exit();
     }
 }else{
-    // Mauvaise méthode, on gère l'erreur
-    http_response_code(405);
-    echo json_encode(["error" => "Utilisez la méthode POST"]);
+    if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+        http_response_code(200);
+        exit();
+    }
+    else{
+        // Mauvaise méthode, on gère l'erreur
+        http_response_code(405);
+        echo json_encode(["error" => "Utilisez la méthode POST"]);
+    }
 }
 
 ?>

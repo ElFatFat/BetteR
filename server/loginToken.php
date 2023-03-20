@@ -8,11 +8,13 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 //Vérification de la méthode
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
+    $headers = apache_request_headers();
+    $token = $headers['Authorization'];
     
     // On vérifie qu'elles ne sont pas vides
-    if(!empty($data->token) && !empty($data->tag)){
+    if(!empty($token) && !empty($data->tag)){
         // On nettoie les données envoyées
-        $token = strip_tags($data->token);
+        $token = strip_tags($token);
         $tag = strip_tags($data->tag);
 
         $sql = 'SELECT * FROM `user` WHERE `tag` = "'.$tag.'" AND `token`= "'.$token.'";';
@@ -33,9 +35,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();
     }
 }else{
-    // Mauvaise méthode, on gère l'erreur
-    http_response_code(405);
-    echo json_encode(["error" => "Utilisez la méthode POST"]);
-    exit();
+    if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+        http_response_code(200);
+        echo json_encode(["message" => "OPTIONS"]);
+        exit();
+    }
+    else{
+        // Mauvaise méthode, on gère l'erreur
+        http_response_code(405);
+        echo json_encode(["error" => "Utilisez la méthode POST"]);
+        exit();
+    }
 }
 ?>

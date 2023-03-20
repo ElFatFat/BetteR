@@ -35,9 +35,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         http_response_code(400);
     }
 }else{
-    // Mauvaise méthode, on gère l'erreur
-    http_response_code(405);
-    echo json_encode(["error" => "Utilisez la méthode POST"]);
+    if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
+        http_response_code(200);
+        echo json_encode(["message" => "OPTIONS"]);
+        exit();
+    }
+    else{
+        // Mauvaise méthode, on gère l'erreur
+        http_response_code(405);
+        echo json_encode(["error" => "Utilisez la méthode POST"]);
+    }
 }
 
 ?>

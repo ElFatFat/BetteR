@@ -9,12 +9,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
 
     // On vérifie qu'elles ne sont pas vides
-    if(!empty($data->tag) && !empty($data->id) && !empty($data->content)){
+    if(!empty($data->tag) && !empty($data->id) && !empty($data->content) && (!empty($data->rebet) || $data->rebet == null)){
         // On nettoie les données envoyées
         $tag = strip_tags($data->tag);
         $id = strip_tags($data->id);
         $content = strip_tags($data->content);
-        $sql = "INSERT INTO `bet` (`user_id`, `content`, `rebet_ref`) VALUES ('".$id."', '".$content."', NULL);";
+        $rebet = strip_tags($data->rebet);
+        if($rebet == null){
+            //On ne reference pas de bet, Bet Original.
+            $sql = "INSERT INTO `bet` (`user_id`, `content`, `rebet_ref`) VALUES ('".$id."', '".$content."', NULL);";
+        } else {
+            //Bet Réponse.
+            //On vérifie que la bet référencée existe.
+            $sql = "SELECT * FROM `bet` WHERE `bet_id` = '".$rebet."';";
+            $result = $conn->query($sql);
+            if($result->num_rows == 0){
+                //La bet référencée n'existe pas.
+                http_response_code(406);
+                echo json_encode(["error" => "La bet référencée n'existe pas."]);
+                exit();
+            }
+            $sql = "INSERT INTO `bet` (`user_id`, `content`, `rebet_ref`) VALUES ('".$id."', '".$content."', '".$rebet."');";
+        }
+        
         // http_response_code(406);
         // echo json_encode($sql);
         // exit();

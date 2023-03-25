@@ -266,6 +266,7 @@ const createBet = async () => {
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("id");
     let content = document.getElementById("contentBet").value;
+    let rebet = document.getElementById("idRebet").value;
 
     const response = await fetch(baseURL+"server/createBet.php", {
         method: "POST",
@@ -277,7 +278,8 @@ const createBet = async () => {
         body: JSON.stringify({
             tag,
             id,
-            content
+            content,
+            rebet
         }),
     });
     const data = await response;
@@ -291,6 +293,8 @@ const createBet = async () => {
         console.log('Token invalide')
     }else if(response.status == 403){
         console.log('Impossible de ne plus suivre cet utilisateur (soit-même ou pas suivi)')
+    }else if(response.status == 404){
+        console.log('Bet référencé inexistant')
     }else{
         console.log('Erreur inconnue : ' + response.status)
         json = await response.json();
@@ -371,7 +375,7 @@ const unfollow = async () => {
 const getBet = async () => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let bet_id = document.getElementById("btnBet").value;
+    let bet_id = document.getElementById("betInput").value;
 
     const response = await fetch(baseURL+"server/getBet.php", {
         method: "POST",
@@ -391,6 +395,12 @@ const getBet = async () => {
         console.log('Informations du bet récupéré');
         json = await response.json();
         console.log(json);
+
+        if(json.rebet_ref === null){
+            console.log('Pas de rebet');
+        }else{
+            console.log('Rebet du bet : ' + json.rebet_ref);
+        }
     }else if(response.status == 400){
         console.log('Données incomplétes, ou bet inexistant')
     }else if(response.status == 401){

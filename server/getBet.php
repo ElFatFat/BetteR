@@ -8,10 +8,10 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
 
+    // echo json_encode($data);
+    // http_response_code(200);
+    // exit();
     // On vérifie qu'elles ne sont pas vides
-    echo json_encode($data);
-    http_response_code(200);
-    exit();
     if(!empty($data->bet_id) ){
         // On nettoie les données envoyées
         $tag = strip_tags($data->bet_id);

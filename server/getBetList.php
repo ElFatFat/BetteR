@@ -42,13 +42,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             http_response_code(204);
             exit();
         }
+        //On converti l'array en string séparé par des virgules.
+        $followeesListString = implode(",",$followeesList);
 
-        foreach($followeesList as $followeeId){
-            $sql = "SELECT `bet_id` FROM `bet` WHERE `user_id` = '".$followeeId."';";
-            $result = $conn->query($sql);
+        //On récupére la liste compléte des bets composant la betlist, dans un ordre descendant (les plus récents en premier)
+        $sql = "SELECT `bet_id` FROM `bet` WHERE `user_id` IN ($followeesListString) ORDER BY `post_time` DESC";
+        $result = $conn->query($sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            //L'utilisateur suit au moins un utilisateur.
             while($row = mysqli_fetch_assoc($result)) {
-                $followeesBetList[] += $row['bet_id'];
+                $followeesBetList[] = $row['bet_id'];
             }
+        }else {
+            //L'utilisateur ne suit personne.
+            http_response_code(204);
+            exit();
         }
         http_response_code(200);
         echo json_encode($followeesBetList);

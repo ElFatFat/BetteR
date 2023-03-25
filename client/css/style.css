@@ -1,0 +1,138 @@
+html {
+  font-family: "Quicksand", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  background-color: #FF7A00;
+}
+
+#registerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 85dvh;
+  width: 35dvw;
+  background-color: #FEFEFE;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.25s ease-in-out;
+}
+
+#loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 55dvh;
+  width: 35dvw;
+  background-color: #FEFEFE;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.25s ease-in-out;
+}
+
+.hide {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.show {
+  opacity: 1;
+  position: relative;
+  pointer-events: all;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputContainer input {
+  height: 3.5rem;
+  width: 22rem;
+  border-radius: 0.5rem;
+  border: solid 1px #232323;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+.inputContainer input::placeholder {
+  color: #232323;
+}
+.inputContainer input:active, .inputContainer input:focus {
+  outline: none;
+}
+
+.bigBtn {
+  height: 3.5rem;
+  width: 14rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #FF7A00;
+  color: #FEFEFE;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wrongPass {
+  border: solid 2px #ff0000 !important;
+  background-color: rgba(255, 186, 186, 0.4156862745);
+}
+
+.goodPass {
+  border: solid 1px #232323 !important;
+  background-color: #FEFEFE;
+}
+
+.disabledBtn {
+  background-color: #c4c4c4;
+  pointer-events: none;
+}
+
+.enabledBtn {
+  background-color: #FF7A00;
+  pointer-events: all;
+}
+
+.linkOrange {
+  font-weight: 700;
+  color: #FF7A00;
+}
+.linkOrange:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #232323;
+  color: #FEFEFE;
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  margin-left: 0.5rem;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/*# sourceMappingURL=style.css.map */

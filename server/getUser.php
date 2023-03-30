@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             exit();
         }
 
+
     }else{
         // Données incomplètes
         http_response_code(400);

@@ -54,8 +54,7 @@ const register = async () => {
     const response = await fetch(baseURL+"server/register.php", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": token
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             username,
@@ -86,7 +85,6 @@ const getBetlist = async () => {
     if(response.status == 200){
         console.log('Liste récupérée');
         json = await response.json();
-        console.log(json);
     }else if(response.status == 204){
         console.log("L'utilisateur ne suit personne")
     }else if(response.status == 400){
@@ -372,10 +370,10 @@ const unfollow = async () => {
     }
 }
 
-const getBet = async () => {
+const getBet = async (number) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let bet_id = document.getElementById("betInput").value;
+    let bet_id = number
 
     const response = await fetch(baseURL+"server/getBet.php", {
         method: "POST",
@@ -409,6 +407,39 @@ const getBet = async () => {
         console.log('Erreur inconnue' + response.status)
     }
 }
+
+const getUser = async (number) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+    let user_id= number;
+
+    const response = await fetch(baseURL+"server/getUser.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+            user_id
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Informations du user récupéré');
+        json = await response.json();
+        console.log(json);
+    }else if(response.status == 400){
+        console.log('Données incomplétes, ou utilisateur inexistant')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else{
+        console.log('Erreur inconnue' + response.status)
+    }
+}
+
 
 function whoami(){
     let token = localStorage.getItem("token");

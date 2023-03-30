@@ -1,0 +1,137 @@
+@import './font.scss';
+@import './colors.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin centerThis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin setHeightWidth($height, $width) {
+    height: $height;
+    width: $width;
+}
+
+body {
+    @include centerThis;
+    height: 100dvh;
+    background-color: $primary;
+}
+
+#registerContainer {
+    @include centerThis;
+    flex-direction: column;
+    @include setHeightWidth(85dvh, 35dvw);
+    background-color: $white;
+    gap: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.25s ease-in-out;
+}
+
+#loginContainer {
+    @include centerThis;
+    flex-direction: column;
+    @include setHeightWidth(55dvh, 35dvw);
+    background-color: $white;
+    gap: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.25s ease-in-out;
+} 
+
+.hide {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.show {
+    opacity: 1;
+    position: relative;
+    pointer-events: all;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inputContainer input {
+    @include setHeightWidth(3.5rem, 22rem);
+    border-radius: 0.5rem;
+    border: solid 1px $black;
+    padding: 0 1rem;
+    font-size: 1rem;   
+    &::placeholder {
+        color: $black;
+    } 
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.bigBtn {
+    @include setHeightWidth(3.5rem, 14rem);
+    border-radius: 0.5rem;
+    border: none;
+    background-color: $primary;
+    color: $white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.wrongPass{
+    border : solid 2px $red!important;
+    background-color: $red2;
+}
+
+.goodPass{
+    border : solid 1px $black!important;
+    background-color: $white;
+}
+
+.disabledBtn {
+    background-color: $grey;
+    pointer-events: none;
+}
+
+.enabledBtn {
+    background-color: $primary;
+    pointer-events: all;
+}
+
+.linkOrange {
+    font-weight: 700;
+    color: $primary;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    .tooltiptext{
+        visibility: hidden;
+        background-color: $black;
+        color: $white;
+        text-align: center;
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.5rem;
+        position: absolute;
+        z-index: 1;
+        margin-left: 0.5rem;
+    }
+    &:hover .tooltiptext {
+        visibility: visible;
+    }
+}
+

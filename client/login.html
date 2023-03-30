@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title> </title>
+</head>
+<body>
+    <div id="registerContainer" class="hide">
+        <h1>Créer votre compte</h1>
+        <div class="inputContainer">
+            <div class="tooltip">
+                <input type="text" id="usernameRegister" placeholder="Pseudo">
+                <span class="tooltiptext">blabla</span>
+            </div>
+            <div class="tooltip">
+                <input type="text" id="tagRegister" placeholder="Identifiant">
+                <span class="tooltiptext">blabla</span>
+            </div>
+            <div class="tooltip">
+                <input type="text" id="emailRegister" placeholder="Email">
+                <span class="tooltiptext">blabla</span>
+            </div>
+            <div class="tooltip">
+                <input type="password" id="passwordRegister" placeholder="Mot de passe" onkeyup="checkPassword()">
+                <span class="tooltiptext">blabla</span>
+            </div>
+            <div class="tooltip">
+                <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" onkeyup="checkPassword()">
+                <span class="tooltiptext">blabla</span>
+            </div>
+        </div>
+        <button class="bigBtn disabledBtn" onclick="register()">S'inscrire</button>
+        <p>Vous avez déjà un compte? <a class="linkOrange" onclick="switchLogin()">Connectez-vous</a></p>
+    </div>
+    <div id="loginContainer" class="show">
+        <h1>Connectez-vous à BetteR</h1>
+        <div class="inputContainer">
+            <input type="text" id="usernameLogin" placeholder="Identifiant ou email">
+            <input type="password" id="passwordLogin" placeholder="Mot de passe">
+        </div>
+        <button class="bigBtn disabledBtn" onclick="login()">Se connecter</button>
+        <p>Vous n'avez pas de compte? <a class="linkOrange" onclick="switchLogin()">Créez un compte</a></p>
+    </div>
+</body>
+<script src="./js/better.js"></script>
+</html>

@@ -12,23 +12,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($data->user_id) ){
         // On nettoie les données envoyées
         $tag = strip_tags($data->bet_id);
-        $sql = "SELECT * FROM `user` WHERE `user_id` = '".$data->user_id."';";
-        echo "biyr";
-        // $result = $conn->query($sql);
-        // if (mysqli_num_rows($result) > 0) {
-        //     echo json_encode(["error" => "Données incomplètes"]);
-        //     http_response_code(200);
-        //     exit();
-        // }else {
-        //     echo json_encode(["error" => "Utilisateur introuvable"]);
-        //     http_response_code(404);
-        //     exit();
-        // }
+        $sql = "SELECT `user_id`, `username`, `tag`, `betcoin`, `email`, `profile_picture_url`, `banner_picture_url` FROM `user` WHERE `user_id` = '".$data->user_id."';";
+        $result = $conn->query($sql);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            echo json_encode($row);
+            http_response_code(200);
+            exit();
+        }else {
+            http_response_code(404);
+            exit();
+        }
+
 
     }else{
         // Données incomplètes
         http_response_code(400);
-        echo json_encode(["error" => "Données incomplètes"]);
     }
 }else{
     if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){

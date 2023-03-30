@@ -2,7 +2,7 @@
 
 require_once 'db_connect.php';
 
-echo "Connected successfully";
+echo "Bite successfully";
 
 
 

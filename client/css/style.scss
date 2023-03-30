@@ -18,16 +18,38 @@
     width: $width;
 }
 
-body {
+@mixin generalContainer {
+    background-color: $white;
+    box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 0.75rem;
+}
+
+@mixin generalButton {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: $primary;
+    color: $white;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+}
+
+#loginBody {
     @include centerThis;
     height: 100dvh;
     background-color: $primary;
 }
 
+body {
+    @include centerThis;
+    height: 100dvh;
+    background-color: $white;
+}
+
 #registerContainer {
     @include centerThis;
     flex-direction: column;
-    @include setHeightWidth(85dvh, 35dvw);
+    // @include setHeightWidth(85dvh, 35dvw);
+    padding: clamp(3rem, 2.5vw, 10rem) clamp(5rem, 2.5vw, 10rem);
     background-color: $white;
     gap: 1.5rem;
     border-radius: 1rem;
@@ -37,7 +59,8 @@ body {
 #loginContainer {
     @include centerThis;
     flex-direction: column;
-    @include setHeightWidth(55dvh, 35dvw);
+    // @include setHeightWidth(55dvh, 35dvw);
+    padding: clamp(3rem, 2.5vw, 10rem) clamp(5rem, 2.5vw, 10rem);
     background-color: $white;
     gap: 1.5rem;
     border-radius: 1rem;
@@ -124,14 +147,200 @@ body {
         background-color: $black;
         color: $white;
         text-align: center;
-        padding: 0.5rem 0.5rem;
+        padding: 1.5rem 1.5rem;
         border-radius: 0.5rem;
         position: absolute;
         z-index: 1;
         margin-left: 0.5rem;
+        width: clamp(10rem, 15vw, 20rem);
     }
     &:hover .tooltiptext {
         visibility: visible;
     }
 }
+
+.homeContainer {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    & > div {
+        // background-color: $red;
+        height: 100%;
+    }
+    #leftContainer {
+        width: 25dvw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        #homeLogo{
+            width: 50%;
+            margin-top: 1rem;
+            margin-bottom: 5rem;
+        }
+        .Wrapper {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            a{
+                color: $black;
+            }
+            a:link {
+                text-decoration: none;
+            }
+            .menuWrapper{
+                display: flex;
+                gap: 1.5rem;
+                p {
+                    font-weight: 900;
+                    font-size: 2rem;
+                }
+                img {
+                    align-self: center;
+                }
+            }
+        }
+    }
+    #middleContainer {
+        width: 45dvw;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        .feedSelectorContainer {
+            min-height: 10dvh;
+            @include centerThis;
+            font-size: 1.5rem;
+            font-weight: 900;
+            @include generalContainer;
+            margin-top: 1rem;
+            .forYou{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+            }
+            .sub {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+            }            
+        }
+        .writeBetsContainer {
+            min-height: 30dvh;
+            @include generalContainer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            textarea{
+                background-color: $white;
+                align-self: center;
+                width: 95%;
+                height: 60%;
+                border: none;
+                font-size: 1.5rem;
+                font-weight: 400;
+                resize: none;
+                padding: 1rem 2rem;
+                &:focus{
+                    outline: none;
+                }
+                &::placeholder{
+                    font-family: 'Quicksand', sans-serif;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
+            }
+            .betsButtonContainer{
+                display: flex;
+                height: 20%;
+                button{
+                    @include generalButton;
+                    height: 95%;
+                    width: 20%;
+                    font-size: 1.5rem;
+                    font-weight: 900;
+                }
+                #fill {
+                    width: 77.5%;
+                }
+            }
+        }
+        #orangeSeparator {
+            width: 50%;
+            min-height: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: $primary;
+            align-self: center;
+        }
+        .bets {
+            @include generalContainer;
+            padding: 2rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            .userInfoWrapper {
+                display: flex;
+                gap: 1rem;
+                img {
+                    width: 10%;
+                    height: 100%;
+                    border-radius: 0.5rem;
+                }
+                .userInfo {
+                    .usernameInfo {
+                        font-weight: 900;
+                    }
+                    .tagInfo {
+                        font-weight: 400;
+                    }
+                }
+            }
+            .betContent{
+                margin-left: 10%;
+                padding-left: 1rem;
+            }
+            .actionsWrapper {
+                display: flex;
+                gap: 7.5rem;
+                margin-left: 10%;
+                padding-left: 1rem;
+                >* {
+                    display: flex;
+                    gap: 1rem;
+                }
+                .like {
+                    img {
+                        align-self: center;
+                    }
+                }
+                .comment {
+                    img {
+                        align-self: center;
+                    }
+                }
+                .share {
+                    img {
+                        align-self: center;
+                    }
+                }
+            }
+        }
+    }
+    #rightContainer {
+        width: 25dvw;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 

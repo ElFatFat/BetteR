@@ -2,8 +2,8 @@
 const baseURL = "http://localhost/BetteR/";
 
 const login = async () => {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let username = document.getElementById("usernameLogin").value;
+    let password = document.getElementById("passwordLogin").value;
     const response = await fetch(baseURL+'server/login.php', {
         method: "POST",
         headers: {
@@ -21,6 +21,7 @@ const login = async () => {
         localStorage.setItem("tag", data.tag);
         localStorage.setItem("id", data.id);
         console.log("Authentification réussie : \n\n" + data.token + "\n" + data.tag + "\n" + data.id);
+        window.location.href = "home.html";
     }
 };
 
@@ -85,6 +86,10 @@ const getBetlist = async () => {
     if(response.status == 200){
         console.log('Liste récupérée');
         json = await response.json();
+        console.log(json);
+        json.forEach(element => {
+            getBet(element);
+        });
     }else if(response.status == 204){
         console.log("L'utilisateur ne suit personne")
     }else if(response.status == 400){
@@ -300,10 +305,10 @@ const createBet = async () => {
     }
 }
 
-const follow = async () => {
+const follow = async (name) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let tagToFollow = document.getElementById("followInput").value;
+    let tagToFollow = name;
 
     const response = await fetch(baseURL+"server/follow.php", {
         method: "POST",
@@ -373,7 +378,7 @@ const unfollow = async () => {
 const getBet = async (number) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let bet_id = number
+    let bet_id = number;
 
     const response = await fetch(baseURL+"server/getBet.php", {
         method: "POST",
@@ -393,7 +398,7 @@ const getBet = async (number) => {
         console.log('Informations du bet récupéré');
         json = await response.json();
         console.log(json);
-
+        addBet(json.user_id, json.bet_id, json.post_time, json.content);
         if(json.rebet_ref === null){
             console.log('Pas de rebet');
         }else{
@@ -440,7 +445,6 @@ const getUser = async (number) => {
     }
 }
 
-
 function whoami(){
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
@@ -449,4 +453,69 @@ function whoami(){
     console.log('Token : ' + token);
     console.log('Tag : ' + tag);
     console.log('ID : ' + id);
+}
+
+//create a function to add a new div to the page with the bet content
+function addBet(betUsername, betTag, betDate, betContent) {
+    let middleContainer = document.getElementById("middleContainer");
+    let newBet = document.createElement("div");
+    let newUserInfoWrapper = document.createElement("div");
+    let newUserPfp = document.createElement("img");
+    let newUserInfo = document.createElement("div");
+    let newUsernameInfo = document.createElement("p");
+    let newtagInfo = document.createElement("p");
+    let newBetDate = document.createElement("p");
+    let newDateInfo = document.createElement("div");
+    let newBetContent = document.createElement("p");
+    let newActionsWrapper = document.createElement("div");
+    let newLike = document.createElement("div");
+    let newRebet = document.createElement("div");
+    let newComment = document.createElement("div");
+    let newLikeLogo = document.createElement("img");
+    let newRebetLogo = document.createElement("img");
+    let newCommentLogo = document.createElement("img");
+    let newLikeNumber = document.createElement("p");
+    let newRebetNumber = document.createElement("p");
+    let newCommentNumber = document.createElement("p");
+    newBet.classList.add("bets");
+    newUserInfoWrapper.classList.add("userInfoWrapper");
+    newUserInfo.classList.add("userInfo");
+    newUsernameInfo.classList.add("usernameInfo");
+    newtagInfo.classList.add("tagInfo");
+    newDateInfo.classList.add("dateInfo");
+    newBetContent.classList.add("betContent");
+    newActionsWrapper.classList.add("actionsWrapper");
+    newLike.classList.add("like");
+    newRebet.classList.add("rebet");
+    newComment.classList.add("comment");
+    newUserPfp.src = "ressources/pictures/profile/default.jpeg";
+    newUsernameInfo.innerHTML = betUsername;
+    newtagInfo.innerHTML = betTag;
+    newUserInfo.appendChild(newUsernameInfo);
+    newUserInfo.appendChild(newtagInfo);
+    newBetDate.innerHTML = betDate;
+    newDateInfo.appendChild(newBetDate);
+    newUserInfoWrapper.appendChild(newUserPfp);
+    newUserInfoWrapper.appendChild(newUserInfo);
+    newUserInfoWrapper.appendChild(newDateInfo);
+    newBet.appendChild(newUserInfoWrapper);
+    newBetContent.innerHTML = betContent;
+    newBet.appendChild(newBetContent);
+    newLikeLogo.src = "ressources/like_logo.png";
+    newRebetLogo.src = "ressources/rebet_logo.png";
+    newCommentLogo.src = "ressources/comment_logo.png";
+    newLikeNumber.innerHTML = "0";
+    newRebetNumber.innerHTML = "0";
+    newCommentNumber.innerHTML = "0";
+    newLike.appendChild(newLikeLogo);
+    newLike.appendChild(newLikeNumber);
+    newRebet.appendChild(newRebetLogo);
+    newRebet.appendChild(newRebetNumber);
+    newComment.appendChild(newCommentLogo);
+    newComment.appendChild(newCommentNumber);
+    newActionsWrapper.appendChild(newLike);
+    newActionsWrapper.appendChild(newRebet);
+    newActionsWrapper.appendChild(newComment);
+    newBet.appendChild(newActionsWrapper);
+    middleContainer.appendChild(newBet);
 }

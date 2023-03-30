@@ -8,7 +8,7 @@ html {
   box-sizing: border-box;
 }
 
-body {
+#loginBody {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,14 +16,21 @@ body {
   background-color: #FF7A00;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  background-color: #F8F8FF;
+}
+
 #registerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 85dvh;
-  width: 35dvw;
-  background-color: #FEFEFE;
+  padding: clamp(3rem, 2.5vw, 10rem) clamp(5rem, 2.5vw, 10rem);
+  background-color: #F8F8FF;
   gap: 1.5rem;
   border-radius: 1rem;
   transition: all 0.25s ease-in-out;
@@ -34,9 +41,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 55dvh;
-  width: 35dvw;
-  background-color: #FEFEFE;
+  padding: clamp(3rem, 2.5vw, 10rem) clamp(5rem, 2.5vw, 10rem);
+  background-color: #F8F8FF;
   gap: 1.5rem;
   border-radius: 1rem;
   transition: all 0.25s ease-in-out;
@@ -81,7 +87,7 @@ body {
   border-radius: 0.5rem;
   border: none;
   background-color: #FF7A00;
-  color: #FEFEFE;
+  color: #F8F8FF;
   font-family: "Quicksand", sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
@@ -95,7 +101,7 @@ body {
 
 .goodPass {
   border: solid 1px #232323 !important;
-  background-color: #FEFEFE;
+  background-color: #F8F8FF;
 }
 
 .disabledBtn {
@@ -123,16 +129,195 @@ body {
 .tooltip .tooltiptext {
   visibility: hidden;
   background-color: #232323;
-  color: #FEFEFE;
+  color: #F8F8FF;
   text-align: center;
-  padding: 0.5rem 0.5rem;
+  padding: 1.5rem 1.5rem;
   border-radius: 0.5rem;
   position: absolute;
   z-index: 1;
   margin-left: 0.5rem;
+  width: clamp(10rem, 15vw, 20rem);
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.homeContainer {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+}
+.homeContainer > div {
+  height: 100%;
+}
+.homeContainer #leftContainer {
+  width: 25dvw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.homeContainer #leftContainer #homeLogo {
+  width: 50%;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+.homeContainer #leftContainer .Wrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.homeContainer #leftContainer .Wrapper a {
+  color: #232323;
+}
+.homeContainer #leftContainer .Wrapper a:link {
+  text-decoration: none;
+}
+.homeContainer #leftContainer .Wrapper .menuWrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+.homeContainer #leftContainer .Wrapper .menuWrapper p {
+  font-weight: 900;
+  font-size: 2rem;
+}
+.homeContainer #leftContainer .Wrapper .menuWrapper img {
+  align-self: center;
+}
+.homeContainer #middleContainer {
+  width: 45dvw;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.homeContainer #middleContainer .feedSelectorContainer {
+  min-height: 10dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+}
+.homeContainer #middleContainer .feedSelectorContainer .forYou {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.homeContainer #middleContainer .feedSelectorContainer .sub {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.homeContainer #middleContainer .writeBetsContainer {
+  min-height: 30dvh;
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.homeContainer #middleContainer .writeBetsContainer textarea {
+  background-color: #F8F8FF;
+  align-self: center;
+  width: 95%;
+  height: 60%;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  resize: none;
+  padding: 1rem 2rem;
+}
+.homeContainer #middleContainer .writeBetsContainer textarea:focus {
+  outline: none;
+}
+.homeContainer #middleContainer .writeBetsContainer textarea::placeholder {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.homeContainer #middleContainer .writeBetsContainer .betsButtonContainer {
+  display: flex;
+  height: 20%;
+}
+.homeContainer #middleContainer .writeBetsContainer .betsButtonContainer button {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #FF7A00;
+  color: #F8F8FF;
+  font-family: "Quicksand", sans-serif;
+  cursor: pointer;
+  height: 95%;
+  width: 20%;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.homeContainer #middleContainer .writeBetsContainer .betsButtonContainer #fill {
+  width: 77.5%;
+}
+.homeContainer #middleContainer #orangeSeparator {
+  width: 50%;
+  min-height: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #FF7A00;
+  align-self: center;
+}
+.homeContainer #middleContainer .bets {
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.homeContainer #middleContainer .bets .userInfoWrapper {
+  display: flex;
+  gap: 1rem;
+}
+.homeContainer #middleContainer .bets .userInfoWrapper img {
+  width: 10%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+.homeContainer #middleContainer .bets .userInfoWrapper .userInfo .usernameInfo {
+  font-weight: 900;
+}
+.homeContainer #middleContainer .bets .userInfoWrapper .userInfo .tagInfo {
+  font-weight: 400;
+}
+.homeContainer #middleContainer .bets .betContent {
+  margin-left: 10%;
+  padding-left: 1rem;
+}
+.homeContainer #middleContainer .bets .actionsWrapper {
+  display: flex;
+  gap: 7.5rem;
+  margin-left: 10%;
+  padding-left: 1rem;
+}
+.homeContainer #middleContainer .bets .actionsWrapper > * {
+  display: flex;
+  gap: 1rem;
+}
+.homeContainer #middleContainer .bets .actionsWrapper .like img {
+  align-self: center;
+}
+.homeContainer #middleContainer .bets .actionsWrapper .comment img {
+  align-self: center;
+}
+.homeContainer #middleContainer .bets .actionsWrapper .share img {
+  align-self: center;
+}
+.homeContainer #rightContainer {
+  width: 25dvw;
 }
 
 /*# sourceMappingURL=style.css.map */

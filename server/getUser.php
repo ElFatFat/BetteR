@@ -8,29 +8,15 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
 
-    // echo json_encode($data);
-    // http_response_code(200);
-    // exit();
     // On vérifie qu'elles ne sont pas vides
-    if(!empty($data->bet_id) ){
+    if(!empty($data->user_id) ){
         // On nettoie les données envoyées
-        $bet_id = strip_tags($data->bet_id);
-        $sql = "SELECT bet.*, user.username, user.tag, user.profile_picture_url FROM `bet` JOIN user ON `bet_id` = '".$bet_id."' AND bet.user_id = user.user_id";
+        $tag = strip_tags($data->bet_id);
+        $sql = "SELECT `user_id`, `username`, `tag`, `betcoin`, `email`, `profile_picture_url`, `banner_picture_url` FROM `user` WHERE `user_id` = '".$data->user_id."';";
         $result = $conn->query($sql);
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-
-            $timeStamp = $row['post_time'];
-            $timeStampDate = date( "d/m/Y", strtotime($timeStamp));
-            $timeStampHour = date( "H:i:s", strtotime($timeStamp));
-            $timeStamp = $timeStampDate."T".$timeStampHour;
-            $row['post_time'] = $timeStamp;
-
-            $sql = "SELECT COUNT(*) FROM bet WHERE rebet_ref = '".$bet_id."'";
-            $result = $conn->query($sql);
-            $row['rebet_count'] = mysqli_fetch_assoc($result)['COUNT(*)'];
             echo json_encode($row);
-
             http_response_code(200);
             exit();
         }else {

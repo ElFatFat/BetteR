@@ -308,6 +308,9 @@ const createBet = async () => {
 const follow = async (name) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
+    // let randomUserNumber = number;
+    // let randomUser = document.getElementsByClassName("randomTagInfo")[randomUserNumber].innerHTML;
+    // let tagToFollow = randomUser; 
     let tagToFollow = name;
 
     const response = await fetch(baseURL+"server/follow.php", {
@@ -327,12 +330,14 @@ const follow = async (name) => {
     if(response.status == 200){
         console.log('Follow réussi');
         //BOB, DO SOMETHING
+
     }else if(response.status == 400){
         console.log('Utilisateur inexistant / données incomplétes')
     }else if(response.status == 401){
         console.log('Token invalide')
     }else if(response.status == 403){
         console.log('Impossible de suivre cet utilisateur (soit-même ou déjà suivi)')
+        alert("Impossible de suivre cet utilisateur (soit-même ou déjà suivi)")
     }else{
         console.log('Erreur inconnue : ' + response.status)
         json = await response.json();
@@ -340,10 +345,10 @@ const follow = async (name) => {
     }
 }
 
-const unfollow = async () => {
+const unfollow = async (name) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let tagToUnfollow = document.getElementById("unfollowInput").value;
+    let tagToUnfollow = name;
 
     const response = await fetch(baseURL+"server/unfollow.php", {
         method: "POST",
@@ -368,6 +373,7 @@ const unfollow = async () => {
         console.log('Token invalide')
     }else if(response.status == 403){
         console.log('Impossible de ne plus suivre cet utilisateur (soit-même ou pas suivi)')
+        alert("Impossible de ne plus suivre cet utilisateur (soit-même ou pas suivi)")
     }else{
         console.log('Erreur inconnue : ' + response.status)
         json = await response.json();
@@ -436,6 +442,7 @@ const getUser = async (number) => {
         console.log('Informations du user récupéré');
         json = await response.json();
         console.log(json);
+        // console.log(data);
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){
@@ -444,6 +451,7 @@ const getUser = async (number) => {
         console.log('Erreur inconnue' + response.status)
     }
 }
+
 const randomUser = async (number) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
@@ -465,6 +473,10 @@ const randomUser = async (number) => {
         console.log('Informations aléatoires récupérées');
         json = await response.json();
         console.log(json);
+        //créer une boucle qui parcours les tableaux dans un tableau et qui ajoute les infos dans les balises p randomUsernameInfo et randomTagInfo
+        for(let i = 0; i < json.length; i++){
+            addRandomUser(json[i].username, json[i].tag, i);
+        }
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){
@@ -473,6 +485,14 @@ const randomUser = async (number) => {
         console.log('Erreur inconnue' + response.status)
     }
 }
+
+function addRandomUser(username, tag, i){
+    document.getElementsByClassName("randomUsernameInfo")[i].innerHTML = username;
+    document.getElementsByClassName("randomTagInfo")[i].innerHTML = "@"+tag;
+    document.getElementsByClassName("followBtn")[i].setAttribute("onclick", "follow('"+tag+"')");
+    document.getElementsByClassName("unfollowBtn")[i].setAttribute("onclick", "unfollow('"+tag+"')");
+}
+
 
 function whoami(){
     let token = localStorage.getItem("token");
@@ -545,7 +565,7 @@ function addBet(betUsername, betTag, betDate, betContent) {
     newRebet.classList.add("rebet");
     newUserPfp.src = "ressources/pictures/profile/default.jpeg";
     newUsernameInfo.innerHTML = betUsername;
-    newtagInfo.innerHTML = betTag;
+    newtagInfo.innerHTML = "@"+betTag;
     newUserInfo.appendChild(newUsernameInfo);
     newUserInfo.appendChild(newtagInfo);
     newBetDate.innerHTML = betDate;
@@ -593,8 +613,8 @@ const getMe = async (number) => {
         console.log('Informations du user récupéré');
         json = await response.json();
         console.log(json);
-        document.getElementById("usernameInfo").innerText = json.username;
-        document.getElementById("tagInfo").innerText = "@" + json.tag;
+        document.getElementsByClassName("usernameInfo")[0].innerText = json.username;
+        document.getElementsByClassName("tagInfo")[0].innerText = "@" + json.tag;
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){

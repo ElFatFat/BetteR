@@ -268,8 +268,8 @@ const createBet = async () => {
     let tag = localStorage.getItem("tag");
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("id");
-    let content = document.getElementById("contentBet").value;
-    let rebet = document.getElementById("idRebet").value;
+    let content = document.getElementById("writeBet").value;
+    let rebet = null;
 
     const response = await fetch(baseURL+"server/createBet.php", {
         method: "POST",
@@ -289,7 +289,7 @@ const createBet = async () => {
 
     if(response.status == 204){
         console.log('Bet créé');
-        //BOB, DO SOMETHING
+        alert("Bet créé");
     }else if(response.status == 400){
         console.log('Données incomplétes')
     }else if(response.status == 401){
@@ -720,5 +720,37 @@ const liked = async (id) => {
         console.log('Erreur inconnue : ' + response.status)
         json = await data.json();
         console.log(json);
+    }
+}
+
+const getOwnlist = async () => {
+    let tag = localStorage.getItem("tag");
+    let token = localStorage.getItem("token");
+    const response = await fetch(baseURL+"server/getOwnBet.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        },
+        body: JSON.stringify({
+            tag,
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Liste récupérée');
+        json = await response.json();
+        console.log(json);
+    }else if(response.status == 204){
+        console.log("L'utilisateur ne suit personne")
+    }else if(response.status == 400){
+        console.log('Données incomplétes, ou utilisateur inexistant')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else if(response.status == 404){
+        console.log('Aucun bets dans le betlist')
+    }else{
+        console.log('Erreur inconnue' + response.status)
     }
 }

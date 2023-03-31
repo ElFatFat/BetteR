@@ -203,6 +203,14 @@ body {
                 }
             }
         }
+        > a {
+            color: $black;
+            display: flex;
+            justify-content: center;
+        }
+        a:link {
+            text-decoration: none;
+        }
         .profilContainer {
             @include generalContainer;
             width: 90%;
@@ -354,6 +362,72 @@ body {
                     img {
                         align-self: center;
                     }
+                }
+            }
+        }
+        .profilContainer {
+            @include generalContainer;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+            #profilBanner {
+                width: 100%;
+                height: 15rem;
+                border-radius: 0.5rem;
+                // background-color: $red2;
+                grid-row-start: 1;
+                grid-column-start: 1;
+                background-image: url(/client/ressources/logo_iut.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            img {
+                width: 15%;
+                height: auto;
+                border-radius: 0.5rem;
+                grid-row-start: 1;
+                grid-column-start: 1;
+                align-self: flex-end;
+                margin-left: 1rem;
+                margin-bottom: 1rem;
+            }
+            .userInfo{
+                margin-top: 1rem;
+                margin-left: 1rem;
+                .usernameInfo{
+                    font-weight: 900;
+                    font-size: 1.5rem;
+                }
+                .tagInfo{
+                    font-size: 1.5rem;
+                }
+            }
+            .bio {
+                margin-top: 1rem;
+                font-size: 1.5rem;
+                font-weight: 400;
+                padding: 1rem;
+            }
+            .userStatsInfo{
+                margin-top: 1rem;
+                margin-left: 1rem;
+                display: flex;
+                gap: 5rem;
+                .followerStat {
+                    display: flex;
+                    gap: 0.5rem;
+                    font-size: 1.25rem;
+                }
+                .subStat {
+                    display: flex;
+                    gap: 0.5rem;
+                    font-size: 1.25rem;
                 }
             }
         }

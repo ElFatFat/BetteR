@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title> </title>
 </head>
-<body onload="getMe();getBetlist();randomUser()">
+<body onload="getMe();randomUser();getOwnlist()">
     <div class="homeContainer">
         <div id="leftContainer">
             <img id="homeLogo" src="ressources/slightly_bigger_better_logo.png" alt="">
@@ -57,47 +57,28 @@
             </a>
         </div>
         <div id="middleContainer">
-            <div class="feedSelectorContainer">
-                <div class="forYou">
-                    <p>Pour vous</p>
+            <div class="profilContainer">
+                <div id="profilBanner">
                 </div>
-                <div class="sub">
-                    <p>Abonnements</p>
+                <img src="ressources/pictures/profile/default.jpeg" alt="">
+                <div class="userInfo">
+                    <p id="usernameInfo" class="usernameInfo">Username</p>
+                    <p id="tagInfo" class="tagInfo">@Tag</p>
+                </div>
+                <div class="bio">
+                    <p>Je suis un imposteur Among Us infiltré dans votre vaisseau spatial. Je suis là pour semer la confusion et l'anarchie. Soyez sur vos gardes car personne n'est sûr dans cet univers impitoyable.</p>
+                </div>
+                <div class="userStatsInfo">
+                    <div class="followerStat">
+                        <strong id="followerNumber">257</strong>
+                        <p>followers</p>
+                    </div>
+                    <div class="subStat">
+                        <strong id="subNumber">568</strong>
+                        <p>abonnements</p>
+                    </div>
                 </div>
             </div>
-            <div class="writeBetsContainer">
-                <textarea name="writeBet" id="writeBet" cols="30" rows="10" maxlength="300" placeholder="Ecrivez votre Bet's"></textarea>
-                <div class="betsButtonContainer">
-                    <div id="fill"></div>
-                    <button>
-                        Poster
-                    </button>
-                </div>
-            </div>
-            <div id="orangeSeparator"></div>
-            <!-- <div class="bets">
-                <div class="userInfoWrapper">
-                    <img src="ressources/pictures/profile/default.jpeg" alt="">
-                    <div class="userInfo">
-                        <p class="usernameInfo">Username</p>
-                        <p class="tagInfo">@Tag</p>
-                    </div>
-                    <div class="dateInfo">
-                        <p>2023-03-17 00:00:00</p>
-                    </div>
-                </div>
-                <p class="betContent">BLABLABLA</p>
-                <div class="actionsWrapper">
-                    <div class="like">
-                        <img src="ressources/like_logo.png" alt="">
-                        <p>10</p>
-                    </div>
-                    <div class="rebet">
-                        <img src="ressources/rebet_logo.png" alt="">
-                        <p>10</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
         <div id="rightContainer">
             <div class="randomUsersContainer">

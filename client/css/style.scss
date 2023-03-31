@@ -245,30 +245,31 @@ body {
         -ms-overflow-style: none;
         scrollbar-width: none; 
         padding: 0rem 1rem;
-        .feedSelectorContainer {
-            min-height: 10dvh;
-            @include centerThis;
-            font-size: 1.5rem;
-            font-weight: 900;
-            @include generalContainer;
-            margin-top: 1rem;
-            .forYou{
-                width: 50%;
-                display: flex;
-                justify-content: center;
-            }
-            .sub {
-                width: 50%;
-                display: flex;
-                justify-content: center;
-            }            
-        }
+        // .feedSelectorContainer {
+        //     min-height: 10dvh;
+        //     @include centerThis;
+        //     font-size: 1.5rem;
+        //     font-weight: 900;
+        //     @include generalContainer;
+        //     margin-top: 1rem;
+        //     .forYou{
+        //         width: 50%;
+        //         display: flex;
+        //         justify-content: center;
+        //     }
+        //     .sub {
+        //         width: 50%;
+        //         display: flex;
+        //         justify-content: center;
+        //     }            
+        // }
         .writeBetsContainer {
             min-height: 30dvh;
             @include generalContainer;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            margin-top: 1rem;
             textarea{
                 background-color: $white;
                 align-self: center;

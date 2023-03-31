@@ -231,28 +231,6 @@ body {
 .homeContainer #middleContainer::-webkit-scrollbar {
   display: none;
 }
-.homeContainer #middleContainer .feedSelectorContainer {
-  min-height: 10dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 900;
-  background-color: #F8F8FF;
-  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 0.75rem;
-  margin-top: 1rem;
-}
-.homeContainer #middleContainer .feedSelectorContainer .forYou {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
-.homeContainer #middleContainer .feedSelectorContainer .sub {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
 .homeContainer #middleContainer .writeBetsContainer {
   min-height: 30dvh;
   background-color: #F8F8FF;
@@ -261,6 +239,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-top: 1rem;
 }
 .homeContainer #middleContainer .writeBetsContainer textarea {
   background-color: #F8F8FF;

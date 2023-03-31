@@ -158,7 +158,7 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.homeContainer #leftContainer #homeLogo {
+.homeContainer #leftContainer #logoLink {
   width: 50%;
   margin-top: 1rem;
   margin-bottom: 5rem;
@@ -186,6 +186,14 @@ body {
 }
 .homeContainer #leftContainer .Wrapper .menuWrapper img {
   align-self: center;
+}
+.homeContainer #leftContainer > a {
+  color: #232323;
+  display: flex;
+  justify-content: center;
+}
+.homeContainer #leftContainer a:link {
+  text-decoration: none;
 }
 .homeContainer #leftContainer .profilContainer {
   background-color: #F8F8FF;
@@ -223,28 +231,6 @@ body {
 .homeContainer #middleContainer::-webkit-scrollbar {
   display: none;
 }
-.homeContainer #middleContainer .feedSelectorContainer {
-  min-height: 10dvh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 900;
-  background-color: #F8F8FF;
-  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 0.75rem;
-  margin-top: 1rem;
-}
-.homeContainer #middleContainer .feedSelectorContainer .forYou {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
-.homeContainer #middleContainer .feedSelectorContainer .sub {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-}
 .homeContainer #middleContainer .writeBetsContainer {
   min-height: 30dvh;
   background-color: #F8F8FF;
@@ -253,6 +239,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-top: 1rem;
 }
 .homeContainer #middleContainer .writeBetsContainer textarea {
   background-color: #F8F8FF;
@@ -347,6 +334,73 @@ body {
 }
 .homeContainer #middleContainer .bets .actionsWrapper .share img {
   align-self: center;
+}
+.homeContainer #middleContainer .profilContainer {
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.homeContainer #middleContainer .profilContainer::-webkit-scrollbar {
+  display: none;
+}
+.homeContainer #middleContainer .profilContainer #profilBanner {
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.5rem;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  background-image: url(/client/ressources/logo_iut.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.homeContainer #middleContainer .profilContainer img {
+  width: 15%;
+  height: auto;
+  border-radius: 0.5rem;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  align-self: flex-end;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+.homeContainer #middleContainer .profilContainer .userInfo {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.homeContainer #middleContainer .profilContainer .userInfo .usernameInfo {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.homeContainer #middleContainer .profilContainer .userInfo .tagInfo {
+  font-size: 1.5rem;
+}
+.homeContainer #middleContainer .profilContainer .bio {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem;
+}
+.homeContainer #middleContainer .profilContainer .userStatsInfo {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  gap: 5rem;
+}
+.homeContainer #middleContainer .profilContainer .userStatsInfo .followerStat {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+}
+.homeContainer #middleContainer .profilContainer .userStatsInfo .subStat {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.25rem;
 }
 .homeContainer #rightContainer {
   width: 25dvw;

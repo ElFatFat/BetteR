@@ -122,8 +122,10 @@ const getFollowlist = async (wantTag) => {
         console.log('Liste des personnes que vous suivez récupérée');
         json = await response.json();
         console.log(json);
+        document.getElementById("subNumber").innerHTML = json.length;
     }else if(response.status == 204){
         console.log("L'utilisateur ne suit personne")
+        document.getElementById("subNumber").innerHTML = "0";
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){
@@ -153,8 +155,10 @@ const getFolloweelist = async (wantTag) => {
         console.log('Liste des personne qui vous Follow récupérée');
         json = await response.json();
         console.log(json);
+        document.getElementById("followerNumber").innerHTML = json.length;
     }else if(response.status == 204){
         console.log("Personne ne vous suit.")
+        document.getElementById("followerNumber").innerHTML = "0";
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){
@@ -308,9 +312,6 @@ const createBet = async () => {
 const follow = async (name) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    // let randomUserNumber = number;
-    // let randomUser = document.getElementsByClassName("randomTagInfo")[randomUserNumber].innerHTML;
-    // let tagToFollow = randomUser; 
     let tagToFollow = name;
 
     const response = await fetch(baseURL+"server/follow.php", {
@@ -615,6 +616,10 @@ const getMe = async (number) => {
         console.log(json);
         document.getElementsByClassName("usernameInfo")[0].innerText = json.username;
         document.getElementsByClassName("tagInfo")[0].innerText = "@" + json.tag;
+        document.getElementsByClassName("usernameInfo")[1].innerText = json.username;
+        document.getElementsByClassName("tagInfo")[1].innerText = "@" + json.tag;
+        getFolloweelist(json.tag);
+        getFollowlist(json.tag);
     }else if(response.status == 400){
         console.log('Données incomplétes, ou utilisateur inexistant')
     }else if(response.status == 401){
@@ -623,6 +628,42 @@ const getMe = async (number) => {
         console.log('Erreur inconnue' + response.status)
     }
 }
+
+const getOwnlist = async () => {
+    let tag = localStorage.getItem("tag");
+    let token = localStorage.getItem("token");
+    const response = await fetch(baseURL+"server/getOwnBet.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        },
+        body: JSON.stringify({
+            tag,
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Liste récupérée');
+        json = await response.json();
+        console.log(json);
+        json.forEach(element => {
+            getBet(element);
+        });
+    }else if(response.status == 204){
+        console.log("L'utilisateur ne suit personne")
+    }else if(response.status == 400){
+        console.log('Données incomplétes, ou utilisateur inexistant')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else if(response.status == 404){
+        console.log('Aucun bets dans le betlist')
+    }else{
+        console.log('Erreur inconnue' + response.status)
+    }
+}
+
 const like = async (id) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");

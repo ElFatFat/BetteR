@@ -398,7 +398,7 @@ const getBet = async (number) => {
         console.log('Informations du bet récupéré');
         json = await response.json();
         console.log(json);
-        addBet(json.user_id, json.bet_id, json.post_time, json.content);
+        addBet(json.username, json.tag, timeSince(json.post_time), json.content);
         if(json.rebet_ref === null){
             console.log('Pas de rebet');
         }else{
@@ -416,7 +416,7 @@ const getBet = async (number) => {
 const getUser = async (number) => {
     let token = localStorage.getItem("token");
     let tag = localStorage.getItem("tag");
-    let user_id= number;
+    let user_id = number;
 
     const response = await fetch(baseURL+"server/getUser.php", {
         method: "POST",
@@ -455,6 +455,36 @@ function whoami(){
     console.log('ID : ' + id);
 }
 
+function timeSince(date) {
+    let theDate = new Date(date);
+    var seconds = Math.floor((new Date() - theDate) / 1000);
+    var interval = seconds / 31536000;
+  
+    if (interval > 1) {
+      return "Il y a " + Math.floor(interval) + " ans";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return "Il y a " + Math.floor(interval) + " mois";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return "Il y a " + Math.floor(interval) + " jours";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return "Il y a " + Math.floor(interval) + " heures";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return "Il y a " + Math.floor(interval) + " minutes";
+    }
+    return "Il y a " + Math.floor(seconds) + " secondes";
+}
+  var aDay = 24*60*60*1000;
+  console.log(timeSince(new Date(Date.now()-aDay)));
+  console.log(timeSince(new Date(Date.now()-aDay*2)));
+
 //create a function to add a new div to the page with the bet content
 function addBet(betUsername, betTag, betDate, betContent) {
     let middleContainer = document.getElementById("middleContainer");
@@ -470,13 +500,10 @@ function addBet(betUsername, betTag, betDate, betContent) {
     let newActionsWrapper = document.createElement("div");
     let newLike = document.createElement("div");
     let newRebet = document.createElement("div");
-    let newComment = document.createElement("div");
     let newLikeLogo = document.createElement("img");
     let newRebetLogo = document.createElement("img");
-    let newCommentLogo = document.createElement("img");
     let newLikeNumber = document.createElement("p");
     let newRebetNumber = document.createElement("p");
-    let newCommentNumber = document.createElement("p");
     newBet.classList.add("bets");
     newUserInfoWrapper.classList.add("userInfoWrapper");
     newUserInfo.classList.add("userInfo");
@@ -487,7 +514,6 @@ function addBet(betUsername, betTag, betDate, betContent) {
     newActionsWrapper.classList.add("actionsWrapper");
     newLike.classList.add("like");
     newRebet.classList.add("rebet");
-    newComment.classList.add("comment");
     newUserPfp.src = "ressources/pictures/profile/default.jpeg";
     newUsernameInfo.innerHTML = betUsername;
     newtagInfo.innerHTML = betTag;
@@ -503,19 +529,19 @@ function addBet(betUsername, betTag, betDate, betContent) {
     newBet.appendChild(newBetContent);
     newLikeLogo.src = "ressources/like_logo.png";
     newRebetLogo.src = "ressources/rebet_logo.png";
-    newCommentLogo.src = "ressources/comment_logo.png";
     newLikeNumber.innerHTML = "0";
     newRebetNumber.innerHTML = "0";
-    newCommentNumber.innerHTML = "0";
     newLike.appendChild(newLikeLogo);
     newLike.appendChild(newLikeNumber);
     newRebet.appendChild(newRebetLogo);
     newRebet.appendChild(newRebetNumber);
-    newComment.appendChild(newCommentLogo);
-    newComment.appendChild(newCommentNumber);
     newActionsWrapper.appendChild(newLike);
     newActionsWrapper.appendChild(newRebet);
-    newActionsWrapper.appendChild(newComment);
     newBet.appendChild(newActionsWrapper);
     middleContainer.appendChild(newBet);
+}
+
+function getMe(){
+    let id = localStorage.getItem("id");
+    getUser(id);
 }

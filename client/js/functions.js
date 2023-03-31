@@ -444,6 +444,35 @@ const getUser = async (number) => {
         console.log('Erreur inconnue' + response.status)
     }
 }
+const randomUser = async (number) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+
+    const response = await fetch(baseURL+"server/randomUser.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Informations aléatoires récupérées');
+        json = await response.json();
+        console.log(json);
+    }else if(response.status == 400){
+        console.log('Données incomplétes, ou utilisateur inexistant')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else{
+        console.log('Erreur inconnue' + response.status)
+    }
+}
 
 function whoami(){
     let token = localStorage.getItem("token");

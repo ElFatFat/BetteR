@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On vérifie qu'elles ne sont pas vides
     if(!empty($data->user_id) ){
         // On nettoie les données envoyées
-        $tag = strip_tags($data->bet_id);
+        $tag = strip_tags($data->user_id);
         $sql = "SELECT `user_id`, `username`, `tag`, `betcoin`, `email`, `profile_picture_url`, `banner_picture_url` FROM `user` WHERE `user_id` = '".$data->user_id."';";
         $result = $conn->query($sql);
         if (mysqli_num_rows($result) > 0) {

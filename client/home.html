@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title> </title>
 </head>
-<body onload="getMe()">
+<body onload="getMe();getBetlist();randomUser()">
     <div class="homeContainer">
         <div id="leftContainer">
             <img id="homeLogo" src="ressources/slightly_bigger_better_logo.png" alt="">
@@ -101,15 +101,52 @@
             <div class="randomUsersContainer">
                 <p class="randomUsersTitle">Ces comptes peuvent vous intéresser :</p>
                 <div class="randomUsersWrapper">
-                    <div class="randomUser">
+                    <div class="randomUser" id="firstRandomUser">
                         <img src="ressources/pictures/profile/default.jpeg" alt="">
-                        <div class="userInfo">
-                            <p class="usernameInfo">Username</p>
-                            <p class="tagInfo">@Tag</p>
+                        <div class="randomUserInfo">
+                            <p class="randomUsernameInfo">Username</p>
+                            <p class="randomTagInfo">@Tag</p>
+                        </div>
+                    </div>
+                    <button class="followBtn" onclick="follow()">Follow</button>
+                    <button class="unfollowBtn">Unfollow</button>
+                    <div class="randomUser" id="firstRandomUser">
+                        <img src="ressources/pictures/profile/default.jpeg" alt="">
+                        <div class="randomUserInfo">
+                            <p class="randomUsernameInfo">Username</p>
+                            <p class="randomTagInfo">@Tag</p>
                         </div>
                     </div>
                     <button class="followBtn">Follow</button>
                     <button class="unfollowBtn">Unfollow</button>
+                    <div class="randomUser" id="firstRandomUser">
+                        <img src="ressources/pictures/profile/default.jpeg" alt="">
+                        <div class="randomUserInfo">
+                            <p class="randomUsernameInfo">Username</p>
+                            <p class="randomTagInfo">@Tag</p>
+                        </div>
+                    </div>
+                    <button class="followBtn">Follow</button>
+                    <button class="unfollowBtn">Unfollow</button>
+                    <div class="randomUser" id="firstRandomUser">
+                        <img src="ressources/pictures/profile/default.jpeg" alt="">
+                        <div class="randomUserInfo">
+                            <p class="randomUsernameInfo">Username</p>
+                            <p class="randomTagInfo">@Tag</p>
+                        </div>
+                    </div>
+                    <button class="followBtn">Follow</button>
+                    <button class="unfollowBtn">Unfollow</button>
+                    <div class="randomUser" id="firstRandomUser">
+                        <img src="ressources/pictures/profile/default.jpeg" alt="">
+                        <div class="randomUserInfo">
+                            <p class="randomUsernameInfo">Username</p>
+                            <p class="randomTagInfo">@Tag</p>
+                        </div>
+                    </div>
+                    <button class="followBtn">Follow</button>
+                    <button class="unfollowBtn">Unfollow</button>
+                    
                 </div>
             </div>
             <div class="CGUWrapper">

@@ -7,7 +7,7 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 //Vérification de la méthode
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
-        $sql = "SELECT `user_id` FROM `user`";
+        $sql = "SELECT `user_id`, `username`, `tag` FROM `user`";
         $result = $conn->query($sql);
         $users = [];
         if (mysqli_num_rows($result) > 0) {

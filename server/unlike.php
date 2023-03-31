@@ -8,13 +8,13 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $data = json_decode(file_get_contents("php://input"));
     $id = "";
-    $idToFollow = "";
+    $idToUnlike = "";
 
     // On vérifie qu'elles ne sont pas vides
-    if(!empty($data->tag) && !empty($data->tagToFollow)){
+    if(!empty($data->tag) && !empty($data->idToUnlike)){
         // On nettoie les données envoyées
         $tag = strip_tags($data->tag);
-        $tagToFollow = strip_tags($data->tagToFollow);
+        $idToUnlike = strip_tags($data->idToUnlike);
         $sql = "SELECT `user_id` FROM `user` WHERE `tag` = '".$tag."';";
         
         $result = $conn->query($sql);
@@ -24,42 +24,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $row = mysqli_fetch_assoc($result);
             $id = $row['user_id'];
         }else {
-            json_encode(["error" => "Utilisateur 1 inexistant"]);
-            http_response_code(200);
-            exit();
-        }
-
-        $sql = "SELECT `user_id` FROM `user` WHERE `tag` = '".$tagToFollow."';";
-        $result = $conn->query($sql);
-        //On vérifie que l'utilisateur 2 existe.
-        if (mysqli_num_rows($result) > 0) {
-            //Un uitlisateur avec ce tag existe. On récupère son id.
-            $row = mysqli_fetch_assoc($result);
-            $idToFollow = $row['user_id'];
-        }else {
             http_response_code(400);
             exit();
         }
-
-        if($id == $idToFollow){
-            http_response_code(403);
-            exit();
-        }
-
-
-        $sql = "SELECT * FROM `follow` WHERE `followee` = '".$idToFollow."' AND `follower` = '".$id."';";
+        
+        $sql = "SELECT * FROM `likes` WHERE `bet_id` = '".$idToUnlike."' AND `user_id` = '".$id."';";
         $result = $conn->query($sql);
         if (mysqli_num_rows($result) > 0) {
-            //L'utilisateur suit déjà l'utilisateur ciblé.
-            http_response_code(403);
-            exit();
-        }else {
-            //L'utilisateur ne suit pas l'utilisateur ciblé. On le fait suivre.
-            $sql = "INSERT INTO `follow` (`followee`, `follower`) VALUES ('".$idToFollow."', '".$id."');";
+            //L'utilisateur ne suit pas l'utilisateur ciblé.
+            $sql = "DELETE FROM `likes` WHERE `bet_id` = '".$idToUnlike."' AND `user_id` = '".$id."';";
             $result = $conn->query($sql);
             if ($result) {
-                http_response_code(200);
+                http_response_code(204);
             }
+        }else {
+            //L'utilisateur ne suit pas l'utilisateur ciblé.
+            http_response_code(403);
+            exit();
         }
 
 

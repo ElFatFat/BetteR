@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             http_response_code(200);
             exit();
         }else {
+            echo json_encode("Test");
             http_response_code(404);
             exit();
         }
@@ -27,6 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     }else{
         // Données incomplètes
+        echo json_encode("Tes 2");
+
         http_response_code(400);
     }
 }else{

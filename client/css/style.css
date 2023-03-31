@@ -22,6 +22,7 @@ body {
   align-items: center;
   height: 100dvh;
   background-color: #F8F8FF;
+  overflow: hidden;
 }
 
 #registerContainer {
@@ -167,6 +168,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  flex-grow: 0.8;
 }
 .homeContainer #leftContainer .Wrapper a {
   color: #232323;
@@ -185,11 +187,41 @@ body {
 .homeContainer #leftContainer .Wrapper .menuWrapper img {
   align-self: center;
 }
+.homeContainer #leftContainer .profilContainer {
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  width: 90%;
+  display: flex;
+  padding: 1rem;
+}
+.homeContainer #leftContainer .profilContainer img {
+  width: 15%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+.homeContainer #leftContainer .profilContainer .userInfo {
+  margin-left: 1rem;
+}
+.homeContainer #leftContainer .profilContainer .userInfo .usernameInfo {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.homeContainer #leftContainer .profilContainer .userInfo .tagInfo {
+  font-size: 1.5rem;
+}
 .homeContainer #middleContainer {
   width: 45dvw;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 0rem 1rem;
+}
+.homeContainer #middleContainer::-webkit-scrollbar {
+  display: none;
 }
 .homeContainer #middleContainer .feedSelectorContainer {
   min-height: 10dvh;
@@ -318,6 +350,84 @@ body {
 }
 .homeContainer #rightContainer {
   width: 25dvw;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.homeContainer #rightContainer .randomUsersContainer {
+  background-color: #F8F8FF;
+  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: fit-content;
+  margin-top: 1rem;
+  padding: 2rem;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .randomUser {
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .randomUser img {
+  width: 35%;
+  height: 85%;
+  border-radius: 0.5rem;
+  align-self: center;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .randomUser .userInfo .usernameInfo {
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .randomUser .userInfo .tagInfo {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .followBtn {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #FF7A00;
+  color: #F8F8FF;
+  font-family: "Quicksand", sans-serif;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 1rem;
+  height: fit-content;
+}
+.homeContainer #rightContainer .randomUsersContainer .randomUsersWrapper .unfollowBtn {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #FF7A00;
+  color: #F8F8FF;
+  font-family: "Quicksand", sans-serif;
+  cursor: pointer;
+  padding: 0.9rem;
+  background-color: #F8F8FF;
+  color: #232323;
+  border: 2px solid #FF7A00;
+  font-weight: 900;
+  font-size: 1rem;
+  height: fit-content;
+}
+.homeContainer #rightContainer .CGUWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.homeContainer #rightContainer .CGUWrapper p {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=style.css.map */

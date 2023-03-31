@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $row = mysqli_fetch_assoc($result);
 
             $timeStamp = $row['post_time'];
-            $timeStampDate = date( "d/m/Y", strtotime($timeStamp));
+            $timeStampDate = date( "Y-m-d", strtotime($timeStamp));
             $timeStampHour = date( "H:i:s", strtotime($timeStamp));
             $timeStamp = $timeStampDate."T".$timeStampHour;
             $row['post_time'] = $timeStamp;

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title> </title>
 </head>
-<body>
+<body onload="getMe()">
     <div class="homeContainer">
         <div id="leftContainer">
             <img id="homeLogo" src="ressources/slightly_bigger_better_logo.png" alt="">
@@ -47,6 +47,11 @@
                 </a>
             </div>
             <div class="profilContainer">
+                <img src="ressources/pictures/profile/default.jpeg" alt="">
+                <div class="userInfo">
+                    <p class="usernameInfo">Username</p>
+                    <p class="tagInfo">@Tag</p>
+                </div>
             </div>
         </div>
         <div id="middleContainer">
@@ -68,7 +73,7 @@
                 </div>
             </div>
             <div id="orangeSeparator"></div>
-            <div class="bets">
+            <!-- <div class="bets">
                 <div class="userInfoWrapper">
                     <img src="ressources/pictures/profile/default.jpeg" alt="">
                     <div class="userInfo">
@@ -89,14 +94,30 @@
                         <img src="ressources/rebet_logo.png" alt="">
                         <p>10</p>
                     </div>
-                    <div class="comment">
-                        <img src="ressources/comment_logo.png" alt="">
-                        <p>10</p>
-                    </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div id="rightContainer">
+            <div class="randomUsersContainer">
+                <p class="randomUsersTitle">Ces comptes peuvent vous intéresser :</p>
+                <div class="randomUsersWrapper">
+                    <div class="randomUser">
+                        <img src="ressources/pictures/profile/default.jpeg" alt="">
+                        <div class="userInfo">
+                            <p class="usernameInfo">Username</p>
+                            <p class="tagInfo">@Tag</p>
+                        </div>
+                    </div>
+                    <button class="followBtn">Follow</button>
+                    <button class="unfollowBtn">Unfollow</button>
+                </div>
+            </div>
+            <div class="CGUWrapper">
+                <p>Conditions d'utilisation</p>
+                <p>Politique de confidentialité</p>
+                <p>Politique de cookies</p>
+                <p>© 2023 BetteR, Corp.</p>
+            </div>
         </div>
     </div>
     <script src="./js/better.js"></script>

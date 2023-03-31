@@ -570,7 +570,135 @@ function addBet(betUsername, betTag, betDate, betContent) {
     middleContainer.appendChild(newBet);
 }
 
-function getMe(){
-    let id = localStorage.getItem("id");
-    getUser(id);
+const getMe = async (number) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+    let user_id = localStorage.getItem("id");
+
+    const response = await fetch(baseURL+"server/getUser.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+            user_id
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Informations du user récupéré');
+        json = await response.json();
+        console.log(json);
+        document.getElementById("usernameInfo").innerText = json.username;
+        document.getElementById("tagInfo").innerText = "@" + json.tag;
+    }else if(response.status == 400){
+        console.log('Données incomplétes, ou utilisateur inexistant')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else{
+        console.log('Erreur inconnue' + response.status)
+    }
+}
+const like = async (id) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+    let idToLike = id;
+
+    const response = await fetch(baseURL+"server/like.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+            idToLike,
+        }),
+    });
+    const data = await response;
+
+    if(response.status == 200){
+        console.log('Like réussi');
+        //BOB, DO SOMETHING
+    }else if(response.status == 400){
+        console.log('Utilisateur inexistant / données incomplétes')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else if(response.status == 403){
+        console.log('Vous likez déjà ce tweet')
+    }else{
+        console.log('Erreur inconnue : ' + response.status)
+        json = await response.json();
+        console.log(json);
+    }
+}
+
+const unlike = async (id) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+    let idToUnlike = id;
+
+    const response = await fetch(baseURL+"server/unlike.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+            idToUnlike,
+        }),
+    });
+    const data = await response;
+    
+    if(response.status == 204){
+        console.log('Unlike réussi');
+        //BOB, DO SOMETHING
+    }else if(response.status == 400){
+        console.log('Utilisateur inexistant / données incomplétes')
+    }else if(response.status == 401){
+        console.log('Token invalide')
+    }else if(response.status == 403){
+        console.log('Vous ne likez pas ce tweet')
+    }else{
+        console.log('Erreur inconnue : ' + response.status)
+        json = await data.json();
+        console.log(json);
+    }
+}
+
+const liked = async (id) => {
+    let token = localStorage.getItem("token");
+    let tag = localStorage.getItem("tag");
+    let idToUnlike = id;
+
+    const response = await fetch(baseURL+"server/unlike.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+
+        },
+        body: JSON.stringify({
+            tag,
+            idToUnlike,
+        }),
+    });
+    const data = await response;
+    
+    if(response.status == 204){
+        console.log('Vous likez ce bet')
+    }else if(response.status == 403){
+        console.log('Vous ne likez pas ce bet')
+    }else{
+        console.log('Erreur inconnue : ' + response.status)
+        json = await data.json();
+        console.log(json);
+    }
 }
